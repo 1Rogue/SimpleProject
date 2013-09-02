@@ -14,9 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.rogue.simpleproject.gui;
-
-import com.rogue.simpleproject.SimpleProject;
+package com.rogue.simpleproject.command;
 
 /**
  *
@@ -24,23 +22,12 @@ import com.rogue.simpleproject.SimpleProject;
  * @author 1Rogue
  * @version 1.0
  */
-public class GUIManager {
+public abstract class Command {
     
-    private SimpleProject project;
-    private SPWindow window;
-    private SPListener listener;
+    public abstract boolean execute(String[] args);
     
-    public GUIManager(SimpleProject project) {
-        this.project = project;
-    }
+    public abstract String getName();
     
-    public void init() {
-        this.listener = new SPListener(this.project);
-        this.window = new SPWindow(this.project);
-    }
-    
-    public SPListener getListener() {
-        return this.listener;
-    }
+    public abstract String[] getHelp();
 
 }

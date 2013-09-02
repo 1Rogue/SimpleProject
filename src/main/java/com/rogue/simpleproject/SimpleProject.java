@@ -25,33 +25,35 @@ import com.rogue.simpleproject.gui.GUIManager;
  * @author 1Rogue
  * @version 1.0
  */
-public class SimpleProject {
+public class SimpleProject extends Start {
     
     private GUIManager gui;
     private boolean running = true;
     
     public SimpleProject(boolean useGUI) {
         if (useGUI) {
-            gui = new GUIManager(this);
-            gui.init();
-            //convert console output to gui application
-            //start gui
+            this.gui = new GUIManager(this);
+            this.gui.init();
         } else {
             
         }
     }
     
+    public static SimpleProject getProject() {
+        return instance;
+    }
+    
     public void exit(int exitCode) {
-        running = false;
+        this.running = false;
         System.exit(exitCode);
     }
     
     public GUIManager getGUI() {
-        return gui;
+        return this.gui;
     }
     
     public boolean isRunning() {
-        return running;
+        return this.running;
     }
 
 }

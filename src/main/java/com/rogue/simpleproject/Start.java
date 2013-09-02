@@ -25,7 +25,7 @@ package com.rogue.simpleproject;
  */
 public class Start {
     
-    private static SimpleProject instance;
+    protected static SimpleProject instance;
 
     /**
      * Main method for starting. Allows for disabling of GUI through a "-nogui"
@@ -45,4 +45,5 @@ public class Start {
         }
         instance = new SimpleProject(true);
     }
+    
 }

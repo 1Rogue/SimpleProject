@@ -68,12 +68,12 @@ public class SPWindow extends JFrame {
     private void setupTextBoxes() {
 
         // Initialize variables
-        textbox = new JTextArea();
-        input = new JTextField();
+        this.textbox = new JTextArea();
+        this.input = new JTextField();
 
         // Set listeners
-        input.setActionCommand("input");
-        input.addActionListener(project.getGUI().getListener());
+        this.input.setActionCommand("input");
+        this.input.addActionListener(project.getGUI().getListener());
 
         // Put console in a scroll pane
         JScrollPane output = new JScrollPane(textbox);
@@ -140,11 +140,16 @@ public class SPWindow extends JFrame {
     }
 
     public JTextArea getTextArea() {
-        return textbox;
+        return this.textbox;
     }
 
     public JTextField getInputField() {
-        return input;
+        return this.input;
+    }
+    
+    public JTextField setInputField(String input) {
+        this.input.setText("");
+        return this.input;
     }
 
     private void pipeOutput() {
@@ -154,19 +159,19 @@ public class SPWindow extends JFrame {
             System.setOut(new PrintStream(pOut));
             PipedInputStream pIn = new PipedInputStream(pOut);
             BufferedReader reader = new BufferedReader(new InputStreamReader(pIn));
-            while (project.isRunning()) {
+            while (this.project.isRunning()) {
                 try {
                     String line = reader.readLine();
                     if (line != null) {
-                        textbox.append(line);
-                        textbox.append("\n");
+                        this.textbox.append(line);
+                        this.textbox.append("\n");
                     }
                 } catch (IOException ex) {
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(SPWindow.class.getName()).log(Level.SEVERE, "Error piping output to console, exiting!", ex);
-            project.exit(1);
+            this.project.exit(1);
         }
     }
 }

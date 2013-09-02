@@ -16,6 +16,7 @@
  */
 package com.rogue.simpleproject.gui;
 
+import com.rogue.simpleproject.SimpleProject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,9 +27,11 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class SPListener implements ActionListener {
+    
+    private final SimpleProject project;
 
-    public SPListener() {
-        
+    public SPListener(SimpleProject project) {
+        this.project = project;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -36,5 +39,4 @@ public class SPListener implements ActionListener {
             System.out.println("blah");
         }
     }
-
 }
