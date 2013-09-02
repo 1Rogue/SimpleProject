@@ -24,6 +24,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 /**
+ * Handles command for the project
  *
  * @since 1.0
  * @author 1Rogue
@@ -34,6 +35,14 @@ public final class CommandHandler {
     private final SimpleProject project;
     private final Map<String, Command> commands = new HashMap();
 
+    /**
+     * Initializes the Command Handler and adds the commands to the command map
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param project The {@link SimpleProject} instance
+     */
     public CommandHandler(SimpleProject project) {
         this.project = project;
 

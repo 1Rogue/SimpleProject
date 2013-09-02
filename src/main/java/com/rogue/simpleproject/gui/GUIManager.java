@@ -29,15 +29,38 @@ public class GUIManager {
     private SimpleProject project;
     private SPWindow window;
     
+    /**
+     * Initializes the GUI Manager. Use GUIManager.start() to create the window
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param project The {@link SimpleProject} instance
+     */
     public GUIManager(SimpleProject project) {
         this.project = project;
     }
     
+    /**
+     * Builds and opens the GUI window. Also sets the system output to be piped
+     * to the built-in output window.
+     * 
+     * @since 1.0
+     * @version 1.0
+     */
     public void init() {
         this.window = new SPWindow(this.project);
         this.window.pipeOutput();
     }
     
+    /**
+     * Gets the main GUI window
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The {@link SPWindow} in use
+     */
     public SPWindow getWindow() {
         return this.window;
     }

@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Listener for {@link SimpleProject}.
  *
  * @since 1.0
  * @author 1Rogue
@@ -30,10 +31,27 @@ public class SPListener implements ActionListener {
     
     private final SimpleProject project;
 
+    /**
+     * Initializes the listener
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param project The {@link SimpleProject} instance
+     */
     public SPListener(SimpleProject project) {
         this.project = project;
     }
 
+    /**
+     * Fired when an action event is triggered. Currently only linked with
+     * the {@link JTextField} used for input, may be linked to buttons later.
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param e The {@link ActionEvent} being fired
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("input")) {
             String text = this.project.getGUI().getWindow().getInputField().getText();

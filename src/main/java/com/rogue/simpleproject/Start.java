@@ -17,7 +17,7 @@
 package com.rogue.simpleproject;
 
 /**
- * Initial starting class, used for getting the command argument
+ * Initial starting class, used for getting the command arguments
  * 
  * @version 1.0
  * @author 1Rogue
@@ -28,8 +28,10 @@ public class Start {
     protected static SimpleProject instance;
 
     /**
-     * Main method for starting. Allows for disabling of GUI through a "-nogui"
-     * argument
+     * Main method for starting.
+     * 
+     * Arguments:
+     *  -nogui      : Disables the GUI interface
      * 
      * @since 1.0
      * @version 1.0

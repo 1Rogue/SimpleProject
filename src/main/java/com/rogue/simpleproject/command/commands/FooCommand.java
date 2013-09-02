@@ -19,6 +19,7 @@ package com.rogue.simpleproject.command.commands;
 import com.rogue.simpleproject.command.Command;
 
 /**
+ * Calls you a foo, foo!
  *
  * @since 1.0
  * @author 1Rogue

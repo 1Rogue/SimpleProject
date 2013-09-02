@@ -38,6 +38,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
+ * An instantiable GUI window for {@link SimpleProject}
  *
  * @since 1.0
  * @author 1Rogue
@@ -49,11 +50,25 @@ public class SPWindow extends JFrame {
     private JTextArea textbox;
     private JTextField input;
 
+    /**
+     * Initializes the GUI window
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param project The {@link SimpleProject} instance
+     */
     public SPWindow(SimpleProject project) {
         this.project = project;
         this.openWindow();
     }
 
+    /**
+     * Sets the basics of the window, creates the panels, and opens the GUI
+     * 
+     * @since 1.0
+     * @version 1.0
+     */
     private void openWindow() {
         this.setTitle("SimpleProject");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +79,13 @@ public class SPWindow extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Initializes the text and input boxes, sets them in a {@link JSplitPane},
+     * and puts them together in the {@link Container}
+     * 
+     * @since 1.0
+     * @version 1.0
+     */
     private void setupTextBoxes() {
 
         // Initialize variables
@@ -101,6 +123,12 @@ public class SPWindow extends JFrame {
 
     }
 
+    /**
+     * Initializes the example menus, and adds them to the {@link Container}
+     * 
+     * @since 1.0
+     * @version 1.0
+     */
     private void setupTabbedPane() {
 
         // Initialize variables
@@ -139,10 +167,26 @@ public class SPWindow extends JFrame {
         this.getContentPane().add(settings, overall);
     }
 
+    /**
+     * Gets the console window
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The console {@link JTextArea}
+     */
     public JTextArea getTextArea() {
         return this.textbox;
     }
 
+    /**
+     * Gets the input field for the window
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The input {@link JTextField}
+     */
     public JTextField getInputField() {
         return this.input;
     }
@@ -152,8 +196,21 @@ public class SPWindow extends JFrame {
         return this.input;
     }
 
+    /**
+     * Pipes output from System.out. This should NOT be called within the class,
+     * as it is not thread-safe and it will also delay any events after it.
+     * It has not been tested on its own being called outside the class, but
+     * calling it last within a code block may be safe. Needs to be replaced
+     * with a Logger setup.
+     * 
+     * TODO: Replace using the logger class
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @deprecated
+     */
     public void pipeOutput() {
-        //TODO Replace using the logger class
         try {
             PipedOutputStream pOut = new PipedOutputStream();
             System.setOut(new PrintStream(pOut));

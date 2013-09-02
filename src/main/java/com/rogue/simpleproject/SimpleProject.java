@@ -34,6 +34,14 @@ public class SimpleProject extends Start {
     private SPListener listener;
     private boolean running = true;
     
+    /**
+     * Starts the main instance of the program.
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param useGUI Whether to use the {@link GUIManager} or command line
+     */
     public SimpleProject(boolean useGUI) {
         
         this.command = new CommandHandler(this);
@@ -48,27 +56,75 @@ public class SimpleProject extends Start {
         }
     }
     
+    /**
+     * Returns a static instance of the project
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The {@link SimpleProject} instance
+     */
     public static SimpleProject getProject() {
         return instance;
     }
     
+    /**
+     * Exits the project cleanly, clearing up any running tasks
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param exitCode The system exit code to use
+     */
     public void exit(int exitCode) {
         this.running = false;
         System.exit(exitCode);
     }
     
+    /**
+     * Returns the GUI Manager for the project
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The {@link GUIManager} instance
+     */
     public GUIManager getGUI() {
         return this.gui;
     }
     
+    /**
+     * Returns the command handler for the project
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The {@link CommandHandler} instance
+     */
     public CommandHandler getCommandHandler() {
         return this.command;
     }
     
+    /**
+     * Returns the listener for the project
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The {@link SPListener} instance 
+     */
     public SPListener getListener() {
         return this.listener;
     }
     
+    /**
+     * A simple boolean for if the application is running or not
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return True if running, false otherwise
+     */
     public boolean isRunning() {
         return this.running;
     }

@@ -16,7 +16,10 @@
  */
 package com.rogue.simpleproject.command;
 
+import com.rogue.simpleproject.SimpleProject;
+
 /**
+ * Command Template
  *
  * @since 1.0
  * @author 1Rogue
@@ -24,10 +27,46 @@ package com.rogue.simpleproject.command;
  */
 public interface Command {
     
+    /**
+     * The main project instance, kind of gross
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @deprecated 
+     */
+    public SimpleProject project = SimpleProject.getProject();
+    
+    /**
+     * The code to execute upon calling the command.
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param args The command arguments
+     * @return Success of the command (if it worked as intended)
+     */
     public abstract boolean execute(String[] args);
     
+    /**
+     * Gets the name of the command. This is used for keeping track of the
+     * command usage as well as finding the appropriate class to execute.
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The name of the command
+     */
     public abstract String getName();
     
+    /**
+     * Returns help output for use when a command does not execute correctly
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return Command Help 
+     */
     public abstract String[] getHelp();
 
 }
