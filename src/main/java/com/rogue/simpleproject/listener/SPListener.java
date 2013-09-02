@@ -42,6 +42,7 @@ public class SPListener implements ActionListener {
             } else {
                 System.out.println("[]> " + text);
             }
+            this.project.getGUI().getWindow().setInputField("");
         }
     }
 }

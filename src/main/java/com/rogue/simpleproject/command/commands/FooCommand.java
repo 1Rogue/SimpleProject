@@ -14,7 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.rogue.simpleproject.command;
+package com.rogue.simpleproject.command.commands;
+
+import com.rogue.simpleproject.command.Command;
 
 /**
  *
@@ -22,12 +24,23 @@ package com.rogue.simpleproject.command;
  * @author 1Rogue
  * @version 1.0
  */
-public interface Command {
-    
-    public abstract boolean execute(String[] args);
-    
-    public abstract String getName();
-    
-    public abstract String[] getHelp();
+public class FooCommand implements Command {
+
+    public boolean execute(String[] args) {
+        System.out.println("You a foo, foo!");
+        return true;
+    }
+
+    public String getName() {
+        return "foo";
+    }
+
+    public String[] getHelp() {
+        return new String[] {
+            "Command usage: /foo",
+            "Calls you a foo, foo!",
+            "This help is not actually possible to reach!"
+        };
+    }
 
 }

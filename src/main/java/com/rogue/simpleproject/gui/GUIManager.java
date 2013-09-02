@@ -35,6 +35,7 @@ public class GUIManager {
     
     public void init() {
         this.window = new SPWindow(this.project);
+        this.window.pipeOutput();
     }
     
     public SPWindow getWindow() {

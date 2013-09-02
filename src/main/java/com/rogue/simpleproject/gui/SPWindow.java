@@ -62,7 +62,6 @@ public class SPWindow extends JFrame {
         this.setupTextBoxes();
         this.setupTabbedPane();
         this.setVisible(true);
-        this.pipeOutput();
     }
 
     private void setupTextBoxes() {
@@ -124,6 +123,7 @@ public class SPWindow extends JFrame {
         overall.gridy = 0;
         overall.weightx = 1.0;
         overall.weighty = 1.0;
+        overall.anchor = GridBagConstraints.EAST;
 
         // Set menu layouts and add an example button
         menu.setLayout(new GridBagLayout());
@@ -152,7 +152,7 @@ public class SPWindow extends JFrame {
         return this.input;
     }
 
-    private void pipeOutput() {
+    public void pipeOutput() {
         //TODO Replace using the logger class
         try {
             PipedOutputStream pOut = new PipedOutputStream();
