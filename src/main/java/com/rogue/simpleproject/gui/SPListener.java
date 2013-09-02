@@ -16,7 +16,8 @@
  */
 package com.rogue.simpleproject.gui;
 
-import com.rogue.simpleproject.SimpleProject;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -24,23 +25,16 @@ import com.rogue.simpleproject.SimpleProject;
  * @author 1Rogue
  * @version 1.0
  */
-public class GUIManager {
-    
-    private SimpleProject project;
-    private SPWindow window;
-    private SPListener listener;
-    
-    public GUIManager(SimpleProject project) {
-        this.project = project;
+public class SPListener implements ActionListener {
+
+    public SPListener() {
+        
     }
-    
-    public void init() {
-        listener = new SPListener();
-        window = new SPWindow(this.project);
-    }
-    
-    public SPListener getListener() {
-        return listener;
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("input")) {
+            System.out.println("blah");
+        }
     }
 
 }
