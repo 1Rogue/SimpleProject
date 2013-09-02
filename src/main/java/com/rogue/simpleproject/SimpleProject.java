@@ -16,7 +16,9 @@
  */
 package com.rogue.simpleproject;
 
+import com.rogue.simpleproject.command.CommandHandler;
 import com.rogue.simpleproject.gui.GUIManager;
+import com.rogue.simpleproject.listener.SPListener;
 
 /**
  * Main class
@@ -28,14 +30,21 @@ import com.rogue.simpleproject.gui.GUIManager;
 public class SimpleProject extends Start {
     
     private GUIManager gui;
+    private CommandHandler command;
+    private SPListener listener;
     private boolean running = true;
     
     public SimpleProject(boolean useGUI) {
+        
+        this.command = new CommandHandler(this);
+        
         if (useGUI) {
+            this.listener = new SPListener(this);
+            
             this.gui = new GUIManager(this);
             this.gui.init();
         } else {
-            
+            this.gui = null;
         }
     }
     
@@ -50,6 +59,14 @@ public class SimpleProject extends Start {
     
     public GUIManager getGUI() {
         return this.gui;
+    }
+    
+    public CommandHandler getCommandHandler() {
+        return this.command;
+    }
+    
+    public SPListener getListener() {
+        return this.listener;
     }
     
     public boolean isRunning() {

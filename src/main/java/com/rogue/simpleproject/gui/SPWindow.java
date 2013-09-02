@@ -73,7 +73,7 @@ public class SPWindow extends JFrame {
 
         // Set listeners
         this.input.setActionCommand("input");
-        this.input.addActionListener(project.getGUI().getListener());
+        this.input.addActionListener(project.getListener());
 
         // Put console in a scroll pane
         JScrollPane output = new JScrollPane(textbox);

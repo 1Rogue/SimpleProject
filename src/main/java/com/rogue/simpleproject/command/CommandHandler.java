@@ -36,11 +36,11 @@ public class CommandHandler {
     public CommandHandler(SimpleProject project) {
         this.project = project;
     }
-    
+
     public boolean parseCommand(String rawCommand) {
         int splitPoint = rawCommand.charAt(' ');
         String rawArguments = rawCommand.substring(splitPoint, rawCommand.length() - 1);
-        String command = rawCommand.substring(1, splitPoint);
+        String command = rawCommand.substring(1, splitPoint).toLowerCase();
         
         // Break the arguments by spaces, but preserve ones enclosed in quotes
         //TODO: Make this cleaner
@@ -71,7 +71,14 @@ public class CommandHandler {
     
     private boolean onCommand(String command, String[] arguments) {
         if (commands.get(command) != null) {
-            return commands.get(command).execute(arguments);
+            Command cmd = commands.get(command);
+            boolean needsHelp = !cmd.execute(arguments);
+            if (needsHelp) {
+                System.out.println("USAGE FOR: /" + command.toLowerCase());
+                for (String help : cmd.getHelp()) {
+                    System.out.println(help);
+                }
+            }
         }
         return false;
     }

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.rogue.simpleproject.gui;
+package com.rogue.simpleproject.listener;
 
 import com.rogue.simpleproject.SimpleProject;
 import java.awt.event.ActionEvent;
@@ -36,7 +36,12 @@ public class SPListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("input")) {
-            System.out.println("blah");
+            String text = this.project.getGUI().getWindow().getInputField().getText();
+            if (text.startsWith("/")) {
+                this.project.getCommandHandler().parseCommand(text);
+            } else {
+                System.out.println("[]> " + text);
+            }
         }
     }
 }

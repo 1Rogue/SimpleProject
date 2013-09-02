@@ -28,19 +28,17 @@ public class GUIManager {
     
     private SimpleProject project;
     private SPWindow window;
-    private SPListener listener;
     
     public GUIManager(SimpleProject project) {
         this.project = project;
     }
     
     public void init() {
-        this.listener = new SPListener(this.project);
         this.window = new SPWindow(this.project);
     }
     
-    public SPListener getListener() {
-        return this.listener;
+    public SPWindow getWindow() {
+        return this.window;
     }
 
 }
