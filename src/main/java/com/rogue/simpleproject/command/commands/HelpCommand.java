@@ -56,7 +56,25 @@ public class HelpCommand implements Command {
             sb.append(cmd).append(", ");
         }
         return new String[] {
-            "Command usage: /help <command-name>",
+            "Command usage: /help [command-name]",
+            "",
+            "SimpleProject Help. Version 1.0",
+            "",
+            "There are two different forms of commands in SimpleProject; user-defined and hard coded commands",
+            "Hard-coded commands are available at the very end of this help text",
+            "To view user-defined rems, you can use /listrems",
+            "",
+            "User-defined commands are called using a $ symbol, while hard coded uses a / symbol",
+            "User-defined commands also accept variables for input. For example:",
+            "",
+            "    /rem remName This test is a load of {0}",
+            "",
+            "Would create a rem named 'remName'. Then the user could call:",
+            "",
+            "    $remName blueberries",
+            "    [INFO] ===> This test is a load of blueberries",
+            "",
+            "There are plenty of commands, try them yourself!",
             "Available commands: " + sb.substring(0, sb.length() - 2)
         };
     }
