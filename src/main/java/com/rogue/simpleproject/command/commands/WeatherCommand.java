@@ -47,7 +47,7 @@ public class WeatherCommand implements Command {
         if (args.length < 1) {
             return false;
         }
-        final String base = "Current Conditions for %s: %sC/%sF Max, %sC/%sF Min, Winds out of the %s at %sMPH/%sKPH, Currently %s with %smm precipitation";
+        final String base = "Conditions for %s: %sC/%sF Max, %sC/%sF Min, Winds out of the %s at %sMPH/%sKPH, Currently %s with %smm precipitation";
         StringBuilder sb = new StringBuilder();
         for (String arg : args) {
             sb.append(arg).append(" ");

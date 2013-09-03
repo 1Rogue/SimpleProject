@@ -24,9 +24,9 @@ import java.util.logging.Level;
 /**
  * Removes user-commands by name
  *
- * @since
+ * @since 1.0
  * @author 1Rogue
- * @version
+ * @version 1.0
  */
 public class ForgetCommand implements Command {
 
@@ -47,7 +47,7 @@ public class ForgetCommand implements Command {
     }
 
     public String getName() {
-        return "rem";
+        return "forget";
     }
 
     public String[] getHelp() {

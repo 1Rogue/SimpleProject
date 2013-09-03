@@ -80,7 +80,6 @@ public class Text {
                             BufferedReader br = new BufferedReader(isr);
                             if (br.ready()) {
                                 rem = br.readLine();
-                                project.getLogger().log(Level.INFO, "Adding rem '" + name + "' with value of '" + rem + "'!");
                             }
                         }
                         this.rems.put(name, rem);
