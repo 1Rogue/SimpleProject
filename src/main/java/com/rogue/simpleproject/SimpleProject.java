@@ -40,6 +40,9 @@ public class SimpleProject extends Start {
     private final SPListener listener;
     private final SPLogger logger;
     private final DataHandler data;
+    /**
+     * @deprecated
+     */
     private boolean running = true;
 
     /**
@@ -181,6 +184,7 @@ public class SimpleProject extends Start {
      * @version 1.0
      *
      * @return True if running, false otherwise
+     * @deprecated 
      */
     public boolean isRunning() {
         return this.running;

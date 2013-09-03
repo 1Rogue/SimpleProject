@@ -27,7 +27,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Handles saved data requests. Namely SQLite and text
+ * 
  * @since 1.0
  * @author 1Rogue
  * @version 1.0

@@ -23,13 +23,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
+ * Allows checking the weather based on various information
  *
  * @since 1.0
  * @author 1Rogue
@@ -95,7 +93,9 @@ public class WeatherCommand implements Command {
 
     public String[] getHelp() {
         return new String[]{
-            ""
+            "Command usage: /weather <identifying-info>",
+            "The command can take many forms of information. The types currently supported:",
+            "US Zipcode, UK Postcode, Canada Postalcode, IP address, Latitude/Longitude (decimal degree) or city name"
         };
     }
 }

@@ -19,6 +19,7 @@ package com.rogue.simpleproject.gui;
 import com.rogue.simpleproject.SimpleProject;
 
 /**
+ * Manages the GUI for the project
  *
  * @since 1.0
  * @author 1Rogue

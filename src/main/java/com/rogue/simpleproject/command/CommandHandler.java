@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 /**
- * Handles command for the this.project
+ * Handles commands for the project
  *
  * @since 1.0
  * @author 1Rogue
@@ -134,6 +134,14 @@ public final class CommandHandler {
         return false;
     }
     
+    /**
+     * Gets a map of the commands registered with the project
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return A {@link ConcurrentHashMap} of the commands
+     */
     public Map<String, Command> getCommandMap() {
         return this.commands;
     }

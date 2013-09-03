@@ -26,7 +26,6 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A really messy text file loading class written in about 20 minutes. Forgive

@@ -20,6 +20,7 @@ import com.rogue.simpleproject.command.Command;
 import java.util.logging.Level;
 
 /**
+ * Allows the user to add custom user-commands
  *
  * @since 1.0
  * @author 1Rogue

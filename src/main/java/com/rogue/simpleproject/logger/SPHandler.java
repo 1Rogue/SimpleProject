@@ -23,9 +23,11 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
 /**
+ * A custom handler for {@link SPLogger}, which logs to a {@link JTextArea}
  *
- * @since @author 1Rogue
- * @version
+ * @since 1.0
+ * @author 1Rogue
+ * @version 1.0
  */
 public class SPHandler extends Handler {
 
@@ -39,6 +41,14 @@ public class SPHandler extends Handler {
         this.project = project;
     }
 
+    /**
+     * Action to take when something is logged. Writes to console {@link JTextArea}
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param record The LogRecord being written
+     */
     @Override
     public void publish(final LogRecord record) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -49,11 +59,25 @@ public class SPHandler extends Handler {
         });
     }
 
+    /**
+     * How to clear the log. Sets the console as blank (no text)
+     * 
+     * @since 1.0
+     * @version 1.0
+     */
     @Override
     public void flush() {
         this.output.setText("");
     }
 
+    /**
+     * Does nothing, simply overrides the abstract method within {@link Handler}
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @throws SecurityException Never actually thrown
+     */
     @Override
     public void close() throws SecurityException {
     }

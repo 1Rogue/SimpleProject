@@ -178,11 +178,28 @@ public class SPWindow extends JFrame {
         return this.input;
     }
 
+    /**
+     * Sets the value of the input field
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param input The value to set
+     * @return The input field as a {@link JTextField}
+     */
     public JTextField setInputField(String input) {
-        this.input.setText("");
+        this.input.setText(input);
         return this.input;
     }
 
+    /**
+     * Sets whether the input field can be edited or not
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param set True to allow editing, false otherwise
+     */
     public void setInputEditable(boolean set) {
         this.input.setEditable(set);
     }
@@ -222,6 +239,14 @@ public class SPWindow extends JFrame {
         }
     }
     
+    /**
+     * Gets the console text area from the Logging Handler
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @return The console output as a {@link JTextArea}
+     */
     private JTextArea getConsoleTextArea() {
         for (Handler handler : project.getLogger().getHandlers()) {
             if (handler instanceof SPHandler) {

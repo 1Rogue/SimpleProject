@@ -20,6 +20,7 @@ import com.rogue.simpleproject.command.Command;
 import java.util.logging.Level;
 
 /**
+ * Help menu for commands
  *
  * @since 1.0
  * @author 1Rogue

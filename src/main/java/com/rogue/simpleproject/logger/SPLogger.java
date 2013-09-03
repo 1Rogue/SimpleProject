@@ -22,6 +22,7 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 /**
+ * A custom logger for writing output to the GUI or command line
  *
  * @since 1.0
  * @author 1Rogue
@@ -39,6 +40,14 @@ public class SPLogger extends Logger {
         this.setLevel(Level.ALL);
     }
     
+    /**
+     * Formats the output before sending it
+     * 
+     * @since 1.0
+     * @version 1.0
+     * 
+     * @param logRecord The logRecord being sent
+     */
     @Override
     public void log(LogRecord logRecord) {
         String level = (logRecord.getLevel() == Level.OFF) ? "" : logRecord.getLevel().getName();
