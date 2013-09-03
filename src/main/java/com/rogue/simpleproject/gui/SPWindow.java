@@ -17,6 +17,7 @@
 package com.rogue.simpleproject.gui;
 
 import com.rogue.simpleproject.SimpleProject;
+import com.rogue.simpleproject.logger.SPHandler;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,6 +27,7 @@ import java.io.InputStreamReader;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintStream;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -52,45 +54,42 @@ public class SPWindow extends JFrame {
 
     /**
      * Initializes the GUI window
-     * 
+     *
      * @since 1.0
      * @version 1.0
-     * 
+     *
      * @param project The {@link SimpleProject} instance
      */
     public SPWindow(SimpleProject project) {
         this.project = project;
-        this.openWindow();
-    }
-
-    /**
-     * Sets the basics of the window, creates the panels, and opens the GUI
-     * 
-     * @since 1.0
-     * @version 1.0
-     */
-    private void openWindow() {
         this.setTitle("SimpleProject");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new GridBagLayout());
         this.setSize(750, 475);
         this.setupTextBoxes();
         this.setupTabbedPane();
-        this.setVisible(true);
     }
 
     /**
      * Initializes the text and input boxes, sets them in a {@link JSplitPane},
      * and puts them together in the {@link Container}
-     * 
+     *
      * @since 1.0
      * @version 1.0
      */
     private void setupTextBoxes() {
 
         // Initialize variables
-        this.textbox = new JTextArea();
+        JTextArea temp = this.getConsoleTextArea();
+        if (temp != null) {
+            this.textbox = temp;
+        } else {
+            project.exit(1);
+        }
         this.input = new JTextField();
+
+        // Disable the field to start
+        this.setInputEditable(false);
 
         // Set listeners
         this.input.setActionCommand("input");
@@ -100,7 +99,7 @@ public class SPWindow extends JFrame {
         JScrollPane output = new JScrollPane(textbox);
         output.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        output.setPreferredSize(new Dimension(450, 350));
+        output.setPreferredSize(new Dimension(450, 355));
         output.setMinimumSize(new Dimension(10, 10));
 
         // Add console and input into a split pane
@@ -125,7 +124,7 @@ public class SPWindow extends JFrame {
 
     /**
      * Initializes the example menus, and adds them to the {@link Container}
-     * 
+     *
      * @since 1.0
      * @version 1.0
      */
@@ -168,47 +167,38 @@ public class SPWindow extends JFrame {
     }
 
     /**
-     * Gets the console window
-     * 
-     * @since 1.0
-     * @version 1.0
-     * 
-     * @return The console {@link JTextArea}
-     */
-    public JTextArea getTextArea() {
-        return this.textbox;
-    }
-
-    /**
      * Gets the input field for the window
-     * 
+     *
      * @since 1.0
      * @version 1.0
-     * 
+     *
      * @return The input {@link JTextField}
      */
     public JTextField getInputField() {
         return this.input;
     }
-    
+
     public JTextField setInputField(String input) {
         this.input.setText("");
         return this.input;
     }
 
+    public void setInputEditable(boolean set) {
+        this.input.setEditable(set);
+    }
+
     /**
      * Pipes output from System.out. This should NOT be called within the class,
-     * as it is not thread-safe and it will also delay any events after it.
-     * It has not been tested on its own being called outside the class, but
-     * calling it last within a code block may be safe. Needs to be replaced
-     * with a Logger setup.
-     * 
-     * TODO: Replace using the logger class
-     * 
+     * as it is not thread-safe and it will also delay any events after it. It
+     * must be called last within a code block. Needs to be replaced with a
+     * Logger setup.
+     *
+     * TODO: Replace using the logger class.
+     *
      * @since 1.0
      * @version 1.0
-     * 
-     * @deprecated
+     *
+     * @deprecated Replaced with {@link com.rogue.simpleproject.logger.SPLogger}
      */
     public void pipeOutput() {
         try {
@@ -230,5 +220,14 @@ public class SPWindow extends JFrame {
             Logger.getLogger(SPWindow.class.getName()).log(Level.SEVERE, "Error piping output to console, exiting!", ex);
             this.project.exit(1);
         }
+    }
+    
+    private JTextArea getConsoleTextArea() {
+        for (Handler handler : project.getLogger().getHandlers()) {
+            if (handler instanceof SPHandler) {
+                return ((SPHandler)handler).getTextArea();
+            }
+        }
+        return null;
     }
 }

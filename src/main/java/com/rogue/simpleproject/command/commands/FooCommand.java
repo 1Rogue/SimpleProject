@@ -17,6 +17,7 @@
 package com.rogue.simpleproject.command.commands;
 
 import com.rogue.simpleproject.command.Command;
+import java.util.logging.Level;
 
 /**
  * Calls you a foo, foo!
@@ -28,7 +29,7 @@ import com.rogue.simpleproject.command.Command;
 public class FooCommand implements Command {
 
     public boolean execute(String[] args) {
-        System.out.println("You a foo, foo!");
+        project.getLogger().log(Level.INFO, "You a foo, foo!");
         return true;
     }
 

@@ -42,15 +42,13 @@ public class GUIManager {
     }
     
     /**
-     * Builds and opens the GUI window. Also sets the system output to be piped
-     * to the built-in output window.
+     * Builds the GUI window.
      * 
      * @since 1.0
      * @version 1.0
      */
     public void init() {
         this.window = new SPWindow(this.project);
-        this.window.pipeOutput();
     }
     
     /**

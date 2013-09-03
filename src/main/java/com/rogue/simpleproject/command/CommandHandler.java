@@ -22,9 +22,10 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
- * Handles command for the project
+ * Handles command for the this.project
  *
  * @since 1.0
  * @author 1Rogue
@@ -37,17 +38,25 @@ public final class CommandHandler {
 
     /**
      * Initializes the Command Handler and adds the commands to the command map
-     * 
+     *
      * @since 1.0
      * @version 1.0
-     * 
-     * @param project The {@link SimpleProject} instance
+     *
+     * @param this.project The {@link SimpleProject} instance
      */
     public CommandHandler(SimpleProject project) {
         this.project = project;
 
-        FooCommand foo = new FooCommand();
-        commands.put(foo.getName(), foo);
+        Command[] cmds = {
+            new FooCommand(),
+            new RemCommand(),
+            new WeatherCommand(),
+            new HelpCommand()
+        };
+
+        for (Command cmd : cmds) {
+            commands.put(cmd.getName(), cmd);
+        }
     }
 
     /**
@@ -63,16 +72,15 @@ public final class CommandHandler {
      */
     public void parseCommand(String rawCommand) {
         String command;
-        String[] arguments = null;
+        String[] arguments = new String[]{};
         // Break the arguments by spaces, but preserve ones enclosed in quotes
         if (rawCommand.contains(" ")) {
             int splitPoint = rawCommand.indexOf(" ");
             command = rawCommand.substring(1, splitPoint);
             String rawArguments =
-                    rawCommand.substring(splitPoint, rawCommand.length());
+                    rawCommand.substring(splitPoint + 1, rawCommand.length());
             //TODO: Make this cleaner
-            if (rawArguments.contains("\"")) 
-            {
+            if (rawArguments.contains("\"")) {
                 char[] broken = rawArguments.toCharArray();
                 StringBuilder sb = new StringBuilder();
                 List<String> newargs = new LinkedList();
@@ -95,10 +103,9 @@ public final class CommandHandler {
         } else {
             command = rawCommand.substring(1, rawCommand.length());
         }
-        
         boolean exec = onCommand(command, arguments);
         if (!exec) {
-            System.out.println("Unknown command. Type /help for help");
+            this.project.getLogger().log(Level.INFO, "Unknown command. Type /help for help");
         }
     }
 
@@ -113,17 +120,21 @@ public final class CommandHandler {
      * @return True if command exists, false otherwise
      */
     private boolean onCommand(String command, String[] arguments) {
-        if (commands.get(command) != null) {
-            Command cmd = commands.get(command);
+        if (this.commands.get(command) != null) {
+            Command cmd = this.commands.get(command);
             boolean needsHelp = !cmd.execute(arguments);
             if (needsHelp) {
-                System.out.println("USAGE FOR: /" + command.toLowerCase());
+                this.project.getLogger().log(Level.INFO, "USAGE FOR: /" + command.toLowerCase());
                 for (String help : cmd.getHelp()) {
-                    System.out.println(help);
+                    this.project.getLogger().log(Level.INFO, help);
                 }
             }
             return true;
         }
         return false;
+    }
+    
+    public Map<String, Command> getCommandMap() {
+        return this.commands;
     }
 }

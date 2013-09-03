@@ -19,6 +19,7 @@ package com.rogue.simpleproject.listener;
 import com.rogue.simpleproject.SimpleProject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
 
 /**
  * Listener for {@link SimpleProject}.
@@ -28,15 +29,15 @@ import java.awt.event.ActionListener;
  * @version 1.0
  */
 public class SPListener implements ActionListener {
-    
+
     private final SimpleProject project;
 
     /**
      * Initializes the listener
-     * 
+     *
      * @since 1.0
      * @version 1.0
-     * 
+     *
      * @param project The {@link SimpleProject} instance
      */
     public SPListener(SimpleProject project) {
@@ -44,23 +45,40 @@ public class SPListener implements ActionListener {
     }
 
     /**
-     * Fired when an action event is triggered. Currently only linked with
-     * the {@link JTextField} used for input, may be linked to buttons later.
-     * 
+     * Fired when an action event is triggered. Currently only linked with the
+     * {@link JTextField} used for input, may be linked to buttons later.
+     *
      * @since 1.0
      * @version 1.0
-     * 
+     *
      * @param e The {@link ActionEvent} being fired
      */
-    public void actionPerformed(ActionEvent e) {
+    public synchronized void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("input")) {
             String text = this.project.getGUI().getWindow().getInputField().getText();
-            if (text.startsWith("/")) {
-                this.project.getCommandHandler().parseCommand(text);
-            } else {
-                System.out.println("[]> " + text);
+            if (text.isEmpty()) {
+                return;
             }
             this.project.getGUI().getWindow().setInputField("");
+            project.getLogger().log(Level.OFF, text);
+            if (text.startsWith("/")) {
+                this.project.getCommandHandler().parseCommand(text);
+            }
+            if (text.startsWith("$")) {
+                String[] args = text.split(" ");
+                String rem = args[0].substring(1);
+                String back = this.project.getDataHandler().getRem(rem);
+                if (back != null) {
+                    String[] newArgs = new String[args.length - 1];
+                    for (int i = 1; i < args.length; i++) {
+                        newArgs[i - 1] = args[i];
+                    }
+                    back = this.project.getDataHandler().formatRem(rem, newArgs);
+                } else {
+                    project.getLogger().log(Level.INFO, "back is null!");
+                }
+                project.getLogger().log(Level.INFO, back);
+            }
         }
     }
 }
