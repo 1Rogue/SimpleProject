@@ -73,9 +73,7 @@ public class SPListener implements ActionListener {
                     for (int i = 1; i < args.length; i++) {
                         newArgs[i - 1] = args[i];
                     }
-                    back = this.project.getDataHandler().formatRem(rem, newArgs);
-                } else {
-                    project.getLogger().log(Level.INFO, "back is null!");
+                    back = this.project.getDataHandler().formatRem(back, newArgs);
                 }
                 project.getLogger().log(Level.INFO, back);
             }

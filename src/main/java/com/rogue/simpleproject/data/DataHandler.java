@@ -149,6 +149,7 @@ public class DataHandler {
                     newRem.createNewFile();
                     FileWriter fw = new FileWriter(newRem);
                     fw.write(rem);
+                    fw.close();
                 } catch (IOException ex) {
                     Logger.getLogger(DataHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -169,10 +170,12 @@ public class DataHandler {
      * @version 1.0
      *
      * @param name The name of the REM to remove.
+     * @return True if the value existed, false otherwise
      */
-    public void removeRem(String name) {
+    public boolean removeRem(String name) {
         if (this.datatype.equals("sqlite")) {
             // sqlite
+            return false;
         } else {
             Text text = new Text(this.project);
             final Map<String, String> rems;
@@ -180,9 +183,11 @@ public class DataHandler {
                 String oldValue = rems.remove(name);
                 if (oldValue == null) {
                     this.project.getLogger().log(Level.SEVERE, "Rem does not exist!");
+                    return false;
                 } else {
                     File rem = new File(text.getDataDirectory() + File.separator + name);
                     rem.delete();
+                    return true;
                 }
             }
         }

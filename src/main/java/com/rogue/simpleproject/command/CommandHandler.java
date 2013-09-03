@@ -51,7 +51,9 @@ public final class CommandHandler {
             new FooCommand(),
             new RemCommand(),
             new WeatherCommand(),
-            new HelpCommand()
+            new HelpCommand(),
+            new ForgetCommand(),
+            new ListRemsCommand()
         };
 
         for (Command cmd : cmds) {
