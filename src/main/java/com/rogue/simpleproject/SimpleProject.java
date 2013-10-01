@@ -57,7 +57,7 @@ public class SimpleProject extends Start {
         
         final long startTime = System.nanoTime();
 
-        this.logger = new SPLogger(this);
+        this.logger = new SPLogger(this, useGUI);
 
         if (useGUI) {
             this.getLogger().log(Level.INFO, "Enabling listener...");
@@ -92,6 +92,7 @@ public class SimpleProject extends Start {
                 }
             });
         }
+        this.getLogger().log(Level.INFO, "Type \"/help\" for usage help.");
     }
     
     /**

@@ -33,8 +33,10 @@ public class SPHandler extends Handler {
 
     private final JTextArea output;
     private final SimpleProject project;
+    private final boolean useGUI;
 
-    public SPHandler(SimpleProject project) {
+    public SPHandler(SimpleProject project, final boolean useGUI) {
+        this.useGUI = useGUI;
         this.output = new JTextArea();
         this.output.setEditable(false);
         this.output.setLineWrap(true);
@@ -51,12 +53,16 @@ public class SPHandler extends Handler {
      */
     @Override
     public void publish(final LogRecord record) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                output.append(record.getMessage() + "\n");
-            }
-        });
+        if (this.useGUI) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    output.append(record.getMessage() + "\n");
+                }
+            });
+        } else {
+            System.out.println(record.getMessage());
+        }
     }
 
     /**

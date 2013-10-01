@@ -33,10 +33,10 @@ public class SPLogger extends Logger {
     private final SimpleProject project;
     private final String prefix = "===> ";
     
-    public SPLogger(SimpleProject project) {
+    public SPLogger(SimpleProject project, final boolean useGUI) {
         super(project.getClass().getCanonicalName(), null);
         this.project = project;
-        this.addHandler(new SPHandler(project));
+        this.addHandler(new SPHandler(project, useGUI));
         this.setLevel(Level.ALL);
     }
     
